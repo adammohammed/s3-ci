@@ -1,8 +1,22 @@
 language: generic
-deploy:
-  provider: s3
-  access_key_id: "$S3_ACCESS_KEY"
-  secret_access_key: "$S3_SECRET_KEY"
-  bucket: "ci.smuggle.us"
-  local_dir: public
-  endpoint: https://us-east-1.linodeobjects.com
+job:
+  include:
+    - stage: deploy-live
+      script: skip
+      deploy: &s3
+        provider: s3
+        access_key_id: "$S3_ACCESS_KEY"
+        secret_access_key: "$S3_SECRET_KEY"
+        bucket: "ci.smuggle.us"
+        local_dir: public
+        endpoint: https://us-east-1.linodeobjects.com
+    - stage: deploy-pr
+      script: skip
+      deploy:
+        <<: *s3
+        upload-dir: "$TRAVIS_BRANCH"
+stages:
+  - name: deploy-live
+    if: branch = master
+  - name: deploy-pr
+    if: type = pull_request
