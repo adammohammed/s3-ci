@@ -17,4 +17,4 @@ stages:
   - name: deploy-live
     if: branch = dev
   - name: deploy-pr
-    if: type = pull-request
+    if: type = pull_request
