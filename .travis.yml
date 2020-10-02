@@ -15,6 +15,6 @@ jobs:
 
 stages:
   - name: deploy-live
-    if: branch = master
+    if: branch = master and type != pull_request
   - name: deploy-pr
     if: type = pull_request

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-sudo apt-get update && sudo apt-get install -yq aws-cli libs3-2
+sudo apt-get update && sudo apt-get install -yq awscli libs3-2
 
 cleanup_pr () {
     PRID=$(git log -1 | grep -oP 'Merge pull request #\K\d+')
