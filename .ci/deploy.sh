@@ -14,7 +14,7 @@ aws_secret_access_key=$S3_SECRET_KEY
 EOF
     s3="aws s3 --endpoint=https://us-east-1.linodeobjects.com"
 
-    ${s3} rm s3://ci.smuggle.us/PR-${PRID}
+    ${s3} rm --recursive s3://ci.smuggle.us/PR-${PRID}
 }
 
 
