@@ -1,8 +1,8 @@
 language: generic
-job:
+jobs:
   include:
     - stage: deploy-live
-      script: skip
+      script: ./.ci/deploy.sh
       deploy: &s3
         provider: s3
         access_key_id: "$S3_ACCESS_KEY"
@@ -11,12 +11,10 @@ job:
         local_dir: public
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
-      script: skip
-      deploy:
-        <<: *s3
-        upload-dir: "$TRAVIS_BRANCH"
+      script: ./.ci/deploy-pr.sh
+
 stages:
   - name: deploy-live
-    if: branch = master
+    if: branch = dev
   - name: deploy-pr
     if: type = pull_request
