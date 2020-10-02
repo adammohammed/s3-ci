@@ -1,5 +1,5 @@
 language: generic
-job:
+jobs:
   include:
     - stage: deploy-live
       if: branch = master
@@ -13,7 +13,4 @@ job:
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
       if: type = pull_request
-      script: skip
-      deploy:
-        <<: *s3
-        upload-dir: "$TRAVIS_BRANCH"
+      script: ./.ci/deploy-pr.sh
