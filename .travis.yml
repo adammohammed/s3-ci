@@ -2,6 +2,7 @@ language: generic
 job:
   include:
     - stage: deploy-live
+      if: branch = master
       script: skip
       deploy: &s3
         provider: s3
@@ -11,12 +12,8 @@ job:
         local_dir: public
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
+      if: type = pull_request
       script: skip
       deploy:
         <<: *s3
         upload-dir: "$TRAVIS_BRANCH"
-stages:
-  - name: deploy-live
-    if: branch = master
-  - name: deploy-pr
-    if: type = pull_request
