@@ -2,7 +2,7 @@ language: generic
 jobs:
   include:
     - stage: deploy-live
-      script: skip
+      script: ./.ci/deploy.sh
       deploy: &s3
         provider: s3
         access_key_id: "$S3_ACCESS_KEY"
