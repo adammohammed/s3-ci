@@ -2,7 +2,6 @@ language: generic
 jobs:
   include:
     - stage: deploy-live
-      if: branch = master
       script: skip
       deploy: &s3
         provider: s3
@@ -12,5 +11,10 @@ jobs:
         local_dir: public
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
-      if: type = pull_request
       script: ./.ci/deploy-pr.sh
+
+stages:
+  - name: deploy-live
+    if: branch = dev
+  - name: deploy-pr
+    if: type = pull-request
