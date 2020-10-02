@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ls -l
 mkdir -p ~/.aws
 
 cat <<EOF > ~/.aws/credentials
