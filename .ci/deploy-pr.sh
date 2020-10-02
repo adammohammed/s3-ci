@@ -1,8 +1,9 @@
 #!/bin/bash
+set -x
 
 ls -l
 mkdir -p ~/.aws
-
+CWD=$(pwd)
 cat <<EOF > ~/.aws/credentials
 [default]
 aws_access_key_id=$S3_ACCESS_KEY
@@ -13,4 +14,4 @@ sudo apt-get update && sudo apt-get install -yq awscli libs3-2
 
 s3="aws s3 --endpoint=https://us-east-1.linodeobjects.com"
 
-${s3} sync ./pubilc/ s3://ci.smuggle.us/$TRAVIS_BRANCH
+${s3} sync $CWD/pubilc/ s3://ci.smuggle.us/$TRAVIS_BRANCH
