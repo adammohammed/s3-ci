@@ -1,4 +1,4 @@
-language: python
+language: generic
 jobs:
   include:
     - stage: deploy
