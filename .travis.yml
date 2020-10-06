@@ -15,7 +15,7 @@ jobs:
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
       script:
-        - hugo
+        - hugo new site test-ws
         - ./.ci/deploy-pr.sh
 
 stages:
