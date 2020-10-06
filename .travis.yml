@@ -14,9 +14,9 @@ jobs:
         local_dir: public
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
-      install:
+      script:
         - hugo
-      script: ./.ci/deploy-pr.sh
+        - ./.ci/deploy-pr.sh
 
 stages:
   - name: deploy-live
