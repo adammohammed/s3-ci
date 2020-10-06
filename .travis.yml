@@ -1,4 +1,7 @@
 language: generic
+install:
+  - curl -LO https://github.com/gohugoio/hugo/releases/download/v0.76.0/hugo_0.76.0_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.76.0_Linux-64bit.deb
 jobs:
   include:
     - stage: deploy-live
@@ -11,7 +14,9 @@ jobs:
         local_dir: public
         endpoint: https://us-east-1.linodeobjects.com
     - stage: deploy-pr
-      script: ./.ci/deploy-pr.sh
+      script:
+        - hugo new site test-ws
+        - ./.ci/deploy-pr.sh
 
 stages:
   - name: deploy-live
